@@ -1,7 +1,7 @@
 FROM ubuntu:jammy
 
 LABEL maintainer="me@nguyenthdat.com"
-LABEL version="v1.0.0"
+LABEL version="v1.0.2"
 LABEL description="This image for using terrform in CI/CD pipeline"
 
 ENV TERRAFORM_VERSION=1.2.0-rc2
