@@ -35,4 +35,4 @@ RUN ansible-galaxy collection install community.vmware
 COPY ansible.cfg /etc/ansible/ 
 
 WORKDIR /root
-CMD ["/bin/sh"]
+CMD ["/bin/bash"]
