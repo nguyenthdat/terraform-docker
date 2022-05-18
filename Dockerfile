@@ -1,7 +1,7 @@
 FROM ubuntu:jammy
 
 LABEL maintainer="me@nguyenthdat.com"
-LABEL version="v0.1.5"
+LABEL version="v1.0.0"
 LABEL description="This image for using terrform in CI/CD pipeline"
 
 ENV TERRAFORM_VERSION=1.2.0-rc2
@@ -9,9 +9,9 @@ ENV VAULT_VERSION=1.10.3
 ENV PACKER_VERSION=1.8.0
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install \
-        build-essential python3 python3-dev python3-pip wget unzip git
+RUN apt-get update && apt-get full-upgrade -y
+RUN apt-get -yq install \
+        build-essential python3 python3-dev python3-pip wget unzip git ansible
 RUN wget https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terraform_"$TERRAFORM_VERSION"_linux_amd64.zip 
 RUN unzip terraform_"$TERRAFORM_VERSION"_linux_amd64.zip && rm terraform_"$TERRAFORM_VERSION"_linux_amd64.zip
 RUN mv terraform /usr/bin/terraform
@@ -28,7 +28,7 @@ RUN pip3 install requests[security]
 RUN pip3 install pyopenssl ndg-httpsclient pyasn1
 RUN pip3 install pyvmomi
 #RUN pip3 install ansible==2.9.6
-RUN pip3 install --upgrade ansible-core ansible
+#RUN pip3 install --upgrade ansible-core ansible
 RUN mkdir -p /etc/ansible
 RUN ansible-galaxy collection install community.vmware
 
